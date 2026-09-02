@@ -1,0 +1,54 @@
+# Folio
+
+> Night archive of ongoing Pitchfork-and-Torch research desks. Hypothesis lab notes only.
+
+- Site: https://folio.jonbailey.xyz/
+- Author: @suddenlyjon / https://jonbailey.xyz/
+- Version: 1.3.0
+- License: MIT
+
+## One-liner
+
+Folio is a full-canvas 3D night scriptorium that presents public research desks. It currently holds Liber Primus notes, Voynich notes, and a lectern for the INSTAR school. It is not a solve and not a translation.
+
+## Desks
+
+### Liber Primus
+- Repo: https://github.com/Pitchfork-and-Torch/liber-research
+- LP2 pages 0-55 remain unsolved (~12956 runes, IOC ~0.03448).
+- LP1 and LP2 AN END / PARABLE are community-known calibration only.
+- Eight named cipher families burned 2026-08-14. All FAIL.
+- Not affiliated with Cicada 3301. Not a recruiter.
+
+### Voynich
+- Repo: https://github.com/Pitchfork-and-Torch/voynich-research
+- Yale Beinecke MS 408. Hypothesis gloss only.
+- EVA letters are not phonemes. No plant identified. No language identified.
+- Passes 1-8 recorded. Herbal-A label gauntlet FAIL.
+
+### INSTAR (The School)
+- Live: https://instar.jonbailey.xyz/
+- Seven-molt school for the cryptography Cicada actually used.
+- Not affiliated. Not a recruiter. Not Liber Primus gematria.
+- This hall lectern is a sign. Spoilers stay off Folio.
+
+## Related
+
+- Org: https://github.com/Pitchfork-and-Torch
+
+## FAQ
+
+### What is Folio?
+A public 3D hall for ongoing research desks. Scroll walks the aisle.
+
+### Did you solve Liber Primus?
+No.
+
+### Did you translate the Voynich manuscript?
+No.
+
+### Are the hanging pages real manuscript images?
+No. They are invented set dressing. Public notes do not host Liber Primus JPEGs or Voynich folios.
+
+### How do I read this without WebGL?
+https://folio.jonbailey.xyz/a11y and the no-JS HTML on the homepage.
