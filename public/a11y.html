@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accessibility - Folio</title>
+    <meta name="description" content="Accessibility statement for Folio. Canvas limits, keyboard, and a plain-text dossier." />
+    <link rel="canonical" href="https://folio.jonbailey.xyz/a11y.html" />
+    <link rel="stylesheet" href="/fonts/fontshare/fonts.css" />
+    <style>
+      :root { color-scheme: dark; --bone:#e8dcc8; --night:#07080c; --mute:#b7a27a; }
+      body { margin:0; background:var(--night); color:var(--bone); font:16px/1.55 Satoshi, system-ui, sans-serif; }
+      main { max-width:40rem; margin:0 auto; padding:3rem 1.25rem 5rem; }
+      h1,h2 { font-family:"Clash Display", Satoshi, Georgia, serif; font-weight:600; }
+      a { color:#e8dcc8; }
+      p,li { color:#d7cbb6; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="/">Back to Folio</a></p>
+      <h1>Accessibility</h1>
+      <p>
+        Folio is a full-canvas 3D hall. The camera is driven by page scroll.
+        That form is harder for some readers than a normal document.
+      </p>
+      <h2>What we ship</h2>
+      <ul>
+        <li>Pinch zoom is allowed. There is no user-scalable=no lock.</li>
+        <li>A skip link and clipped semantic sections live on the homepage.</li>
+        <li>Keyboard users can tab the brand island, desk links, and GitHub exits.</li>
+        <li>prefers-reduced-motion replaces the walking camera with a still poster and the same copy.</li>
+        <li>With JavaScript off, the homepage still prints the desks.</li>
+      </ul>
+      <h2>What the canvas cannot do well</h2>
+      <p>
+        Screen readers do not inspect the WebGL/WebGPU world. Treat the hall as illustration.
+        The research itself lives in public GitHub notes.
+      </p>
+      <h2>Plain dossier</h2>
+      <p><a href="https://github.com/Pitchfork-and-Torch/liber-research">Liber Primus notes</a></p>
+      <p><a href="https://github.com/Pitchfork-and-Torch/voynich-research">Voynich notes</a></p>
+      <p>Desk 03, the school: <a href="https://instar.jonbailey.xyz/">INSTAR</a></p>
+      <p>Issues: <a href="https://github.com/Pitchfork-and-Torch/folio/issues">Folio on GitHub</a></p>
+    </main>
+    <script defer src="https://hits.jonbailey.xyz/c.js" data-site="folio"></script>
+  </body>
+</html>
