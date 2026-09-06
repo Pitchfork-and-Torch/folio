@@ -8,22 +8,18 @@ type FolioState = {
   desk: DeskId;
   booted: boolean;
   reduced: boolean;
-  webgpu: boolean;
   setDesk: (id: DeskId) => void;
   setBooted: (v: boolean) => void;
   setReduced: (v: boolean) => void;
-  setWebgpu: (v: boolean) => void;
 };
 
 export const useFolio = create<FolioState>((set) => ({
   desk: "threshold",
   booted: false,
   reduced: false,
-  webgpu: false,
   setDesk: (desk) => set({ desk }),
   setBooted: (booted) => set({ booted }),
   setReduced: (reduced) => set({ reduced }),
-  setWebgpu: (webgpu) => set({ webgpu }),
 }));
 
 export function syncDeskFromProgress(progress: number) {
