@@ -13,9 +13,17 @@ export function scrollToHash(hash: string) {
   const desk = deskByHash(hash);
   const lenis = lenisRef;
   if (!desk || !lenis) return;
-  const limit = lenis.limit || 1;
   const t = desk.id === "threshold" ? 0 : (desk.range.start + desk.range.end) / 2;
-  lenis.scrollTo(t * limit, { immediate: false });
+  const go = (tries = 0) => {
+    const limit = lenis.limit;
+    if (limit > 0) {
+      lenis.scrollTo(t * limit, { immediate: false });
+      return;
+    }
+    // First paint often has limit 0; limit||1 scrolled deep links to a few pixels.
+    if (tries < 60) requestAnimationFrame(() => go(tries + 1));
+  };
+  go();
 }
 
 export function useScroller() {
