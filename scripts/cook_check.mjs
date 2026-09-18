@@ -139,6 +139,13 @@ if (!scroller.includes('vv?.removeEventListener("resize", onResize)')) {
   fail("useScroller must remove visualViewport resize listener on teardown");
 }
 
+if (!scroller.includes('document.hidden') || !scroller.includes("visibilitychange")) {
+  fail("useScroller must pause Lenis RAF while document.hidden (mirror HiddenPause)");
+}
+if (!scroller.includes('document.removeEventListener("visibilitychange", onVisibility)')) {
+  fail("useScroller must remove visibilitychange listener on teardown");
+}
+
 const stations = read("src/scene/Stations.tsx");
 if (!stations.includes("GAUNTLET_FAMILIES.length")) {
   fail("GauntletBay seals must follow GAUNTLET_FAMILIES.length");

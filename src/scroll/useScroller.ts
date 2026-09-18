@@ -59,12 +59,23 @@ export function useScroller() {
     };
     lenis.on("scroll", onScroll);
 
+    // World.HiddenPause stops the R3F frameloop when the tab is hidden, but
+    // Lenis kept requestAnimationFrame running in background tabs. Mirror that
+    // gate so scroll smoothing does not burn frames while document.hidden.
     let raf = 0;
     const loop = (time: number) => {
-      lenis.raf(time);
+      if (!document.hidden) lenis.raf(time);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
+    const onVisibility = () => {
+      if (!document.hidden) {
+        lenis.resize();
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(loop);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     // Last-desk restore is boot-only. An empty hash on hashchange means the
     // user cleared the fragment; do not resurrect the persisted desk.
@@ -95,6 +106,7 @@ export function useScroller() {
 
     return () => {
       cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("resize", onResize);
       vv?.removeEventListener("resize", onResize);
