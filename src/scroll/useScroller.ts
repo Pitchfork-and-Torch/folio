@@ -103,6 +103,9 @@ export function useScroller() {
     window.addEventListener("resize", onResize);
     const vv = window.visualViewport;
     vv?.addEventListener("resize", onResize);
+    // Pinch-zoom and some mobile chrome shifts fire visualViewport.scroll
+    // without a matching resize (≠ #5 window / #9 vv.resize / #11 pageshow).
+    vv?.addEventListener("scroll", onResize);
     // Back-forward cache restore can revive the page with a stale Lenis limit
     // and no window/visualViewport resize (≠ #5/#9). Re-measure on pageshow.
     const onPageShow = (e: PageTransitionEvent) => {
@@ -116,6 +119,7 @@ export function useScroller() {
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("resize", onResize);
       vv?.removeEventListener("resize", onResize);
+      vv?.removeEventListener("scroll", onResize);
       window.removeEventListener("pageshow", onPageShow);
       motionMq.removeEventListener("change", syncLerp);
       lenis.destroy();

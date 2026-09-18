@@ -138,6 +138,12 @@ if (!scroller.includes("visualViewport") || !scroller.includes('vv?.addEventList
 if (!scroller.includes('vv?.removeEventListener("resize", onResize)')) {
   fail("useScroller must remove visualViewport resize listener on teardown");
 }
+if (!scroller.includes('vv?.addEventListener("scroll", onResize)')) {
+  fail("useScroller must resize Lenis on visualViewport scroll (pinch-zoom / chrome shift)");
+}
+if (!scroller.includes('vv?.removeEventListener("scroll", onResize)')) {
+  fail("useScroller must remove visualViewport scroll listener on teardown");
+}
 
 if (!scroller.includes('document.hidden') || !scroller.includes("visibilitychange")) {
   fail("useScroller must pause Lenis RAF while document.hidden (mirror HiddenPause)");
