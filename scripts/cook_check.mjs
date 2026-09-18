@@ -132,6 +132,12 @@ if (!scroller.includes("allowLastDesk") || !scroller.includes("onHashChange")) {
 if (!scroller.includes("applyHash(false)") || !scroller.includes("applyHash(true)")) {
   fail("useScroller must call applyHash(false) on hashchange and applyHash(true) on boot");
 }
+if (!scroller.includes("visualViewport") || !scroller.includes('vv?.addEventListener("resize", onResize)')) {
+  fail("useScroller must resize Lenis on visualViewport resize (mobile URL bar)");
+}
+if (!scroller.includes('vv?.removeEventListener("resize", onResize)')) {
+  fail("useScroller must remove visualViewport resize listener on teardown");
+}
 
 const stations = read("src/scene/Stations.tsx");
 if (!stations.includes("GAUNTLET_FAMILIES.length")) {

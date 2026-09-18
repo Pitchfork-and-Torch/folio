@@ -84,15 +84,20 @@ export function useScroller() {
     // Lenis caches limit from content height. Without resize, hash scrolls and
     // desk sync drift after orientation / viewport changes (mobile URL bar,
     // window chrome). Distinct from waiting for the first non-zero limit.
+    // Mobile URL-bar show/hide often fires visualViewport.resize without a
+    // matching window.resize, so listen to both (≠ window-only cook #5).
     const onResize = () => {
       lenis.resize();
     };
     window.addEventListener("resize", onResize);
+    const vv = window.visualViewport;
+    vv?.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("resize", onResize);
+      vv?.removeEventListener("resize", onResize);
       motionMq.removeEventListener("change", syncLerp);
       lenis.destroy();
       lenisRef = null;
