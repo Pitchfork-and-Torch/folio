@@ -65,9 +65,18 @@ export function useScroller() {
     window.addEventListener("hashchange", applyHash);
     requestAnimationFrame(applyHash);
 
+    // Lenis caches limit from content height. Without resize, hash scrolls and
+    // desk sync drift after orientation / viewport changes (mobile URL bar,
+    // window chrome). Distinct from waiting for the first non-zero limit.
+    const onResize = () => {
+      lenis.resize();
+    };
+    window.addEventListener("resize", onResize);
+
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("hashchange", applyHash);
+      window.removeEventListener("resize", onResize);
       lenis.destroy();
       lenisRef = null;
     };
