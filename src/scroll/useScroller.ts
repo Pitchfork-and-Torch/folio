@@ -15,7 +15,12 @@ export function scrollToHash(hash: string) {
   if (!desk || !lenis) return;
   const limit = lenis.limit || 1;
   const t = desk.id === "threshold" ? 0 : (desk.range.start + desk.range.end) / 2;
-  lenis.scrollTo(t * limit, { immediate: false });
+  // prefers-reduced-motion: jump immediately. Lerp=1 alone still eases when
+  // immediate is false (nav / hash restore / last-desk). Distinct from lerp MQ sync.
+  const reduce =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  lenis.scrollTo(t * limit, { immediate: reduce });
 }
 
 export function useScroller() {
