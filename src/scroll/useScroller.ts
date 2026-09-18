@@ -47,11 +47,15 @@ export function useScroller() {
     });
     lenisRef = lenis;
 
+    // Lenis emits scroll on construct (progress 0 / desk threshold). That used to
+    // call setDesk -> writeLastDeskHash("#enter") before applyHash restored the
+    // saved lectern when location.hash was empty. Gate persist until restore runs.
+    let persistDesk = false;
     const onScroll = () => {
       const limit = lenis.limit || 1;
       const p = limit > 0 ? lenis.scroll / limit : 0;
       scrollProgress.set(p);
-      syncDeskFromProgress(p);
+      if (persistDesk) syncDeskFromProgress(p);
     };
     lenis.on("scroll", onScroll);
 
@@ -65,10 +69,11 @@ export function useScroller() {
     const applyHash = () => {
       if (location.hash) {
         scrollToHash(location.hash);
-        return;
+      } else {
+        const last = readLastDeskHash();
+        if (last) scrollToHash(last);
       }
-      const last = readLastDeskHash();
-      if (last) scrollToHash(last);
+      persistDesk = true;
     };
     window.addEventListener("hashchange", applyHash);
     requestAnimationFrame(applyHash);
