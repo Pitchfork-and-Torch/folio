@@ -103,6 +103,12 @@ export function useScroller() {
     window.addEventListener("resize", onResize);
     const vv = window.visualViewport;
     vv?.addEventListener("resize", onResize);
+    // Back-forward cache restore can revive the page with a stale Lenis limit
+    // and no window/visualViewport resize (≠ #5/#9). Re-measure on pageshow.
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) lenis.resize();
+    };
+    window.addEventListener("pageshow", onPageShow);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -110,6 +116,7 @@ export function useScroller() {
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("resize", onResize);
       vv?.removeEventListener("resize", onResize);
+      window.removeEventListener("pageshow", onPageShow);
       motionMq.removeEventListener("change", syncLerp);
       lenis.destroy();
       lenisRef = null;

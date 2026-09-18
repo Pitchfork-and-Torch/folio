@@ -146,6 +146,13 @@ if (!scroller.includes('document.removeEventListener("visibilitychange", onVisib
   fail("useScroller must remove visibilitychange listener on teardown");
 }
 
+if (!scroller.includes("pageshow") || !scroller.includes("e.persisted")) {
+  fail("useScroller must resize Lenis on bfcache pageshow (persisted)");
+}
+if (!scroller.includes('window.removeEventListener("pageshow", onPageShow)')) {
+  fail("useScroller must remove pageshow listener on teardown");
+}
+
 const stations = read("src/scene/Stations.tsx");
 if (!stations.includes("GAUNTLET_FAMILIES.length")) {
   fail("GauntletBay seals must follow GAUNTLET_FAMILIES.length");
