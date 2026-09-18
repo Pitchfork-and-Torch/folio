@@ -19,7 +19,7 @@ No new Liber Primus plaintext. No Voynich language, plant, or crib. Hall pages a
 
 ## Stack
 
-Vite, React, Three.js (WebGPU first, WebGL fallback), React Three Fiber, Lenis, Motion, Zustand.
+Vite, React, Three.js (WebGL), React Three Fiber, Lenis, Motion, Zustand.
 
 Self-hosted Clash Display and Satoshi are Fontshare faces under the ITF Free Font License. Do not resell the font files.
 

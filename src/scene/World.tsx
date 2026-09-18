@@ -1,5 +1,5 @@
 import { Canvas, useThree } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useLayoutEffect } from "react";
 import { useFolio } from "../store/folio";
 import { CameraRig } from "./CameraRig";
 import { Hall } from "./Hall";
@@ -33,21 +33,22 @@ function HiddenPause() {
   return null;
 }
 
-export function World() {
-  const setWebgpu = useFolio((s) => s.setWebgpu);
+function HallReady() {
   const setBooted = useFolio((s) => s.setBooted);
+  useLayoutEffect(() => {
+    setBooted(true);
+  }, [setBooted]);
+  return null;
+}
 
+export function World() {
   return (
     <Canvas
       className="folio-canvas"
       dpr={[1, 1.4]}
       shadows={false}
       camera={{ fov: 34, near: 0.14, far: 56, position: [0, 1.5, 16.9] }}
-      gl={(props) => {
-        setWebgpu(false);
-        return createRenderer(props);
-      }}
-      onCreated={() => setBooted(true)}
+      gl={createRenderer}
     >
       <Suspense fallback={null}>
         <HiddenPause />
@@ -60,6 +61,7 @@ export function World() {
         <GauntletBay />
         <CatalogWall />
         <CameraRig />
+        <HallReady />
       </Suspense>
     </Canvas>
   );
