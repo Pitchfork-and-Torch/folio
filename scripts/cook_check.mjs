@@ -112,6 +112,20 @@ for (const [p, id] of expectDesk) {
   if (got !== id) fail(`deskAt(${p}) => ${got}, want ${id}`);
 }
 
+const scroller = read("src/scroll/useScroller.ts");
+if (!scroller.includes('matchMedia("(prefers-reduced-motion: reduce)")')) {
+  fail("useScroller must watch prefers-reduced-motion");
+}
+if (!scroller.includes("syncLerp") || !scroller.includes("lenis.options.lerp")) {
+  fail("useScroller must sync Lenis lerp when reduced-motion changes");
+}
+if (!scroller.includes('motionMq.addEventListener("change", syncLerp)')) {
+  fail("useScroller must listen for reduced-motion change");
+}
+if (!scroller.includes('motionMq.removeEventListener("change", syncLerp)')) {
+  fail("useScroller must remove reduced-motion listener on teardown");
+}
+
 const stations = read("src/scene/Stations.tsx");
 if (!stations.includes("GAUNTLET_FAMILIES.length")) {
   fail("GauntletBay seals must follow GAUNTLET_FAMILIES.length");

@@ -29,15 +29,22 @@ export function useScroller() {
     const content = document.getElementById("scroll-height");
     if (!wrapper || !content) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const lenis = new Lenis({
       wrapper,
       content,
-      lerp: reduced ? 1 : 0.11,
+      lerp: motionMq.matches ? 1 : 0.11,
       wheelMultiplier: 0.88,
       touchMultiplier: 1.15,
     });
     lenisRef = lenis;
+
+    // App swaps World/poster when reduced-motion flips, but Lenis was constructed
+    // once with a frozen lerp. Keep scroll smoothing in lockstep with the MQ.
+    const syncLerp = () => {
+      lenis.options.lerp = motionMq.matches ? 1 : 0.11;
+    };
+    motionMq.addEventListener("change", syncLerp);
 
     const onScroll = () => {
       const limit = lenis.limit || 1;
@@ -77,6 +84,7 @@ export function useScroller() {
       cancelAnimationFrame(raf);
       window.removeEventListener("hashchange", applyHash);
       window.removeEventListener("resize", onResize);
+      motionMq.removeEventListener("change", syncLerp);
       lenis.destroy();
       lenisRef = null;
     };
