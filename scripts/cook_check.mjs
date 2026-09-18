@@ -159,6 +159,18 @@ if (!scroller.includes('window.removeEventListener("pageshow", onPageShow)')) {
   fail("useScroller must remove pageshow listener on teardown");
 }
 
+const world = read("src/scene/World.tsx");
+if (!world.includes("function HiddenPause")) {
+  fail("World must define HiddenPause");
+}
+if (!world.includes("visibilitychange")) {
+  fail("HiddenPause must listen for visibilitychange");
+}
+// Mount-while-hidden: listener alone leaves frameloop always until first flip.
+if (!/const onVis = [\s\S]*?onVis\(\);\s*document\.addEventListener\("visibilitychange", onVis\)/.test(world)) {
+  fail("HiddenPause must sync frameloop on mount (call onVis before subscribe)");
+}
+
 const stations = read("src/scene/Stations.tsx");
 if (!stations.includes("GAUNTLET_FAMILIES.length")) {
   fail("GauntletBay seals must follow GAUNTLET_FAMILIES.length");

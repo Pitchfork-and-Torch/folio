@@ -22,11 +22,15 @@ function HiddenPause() {
   const invalidate = useThree((s) => s.invalidate);
   const set = useThree((s) => s.set);
   useEffect(() => {
+    // visibilitychange alone misses mount-while-hidden (background tab /
+    // prerender). Sync frameloop once on mount so R3F does not burn frames
+    // until the first visibility flip (distinct from Lenis document.hidden pause).
     const onVis = () => {
       const hidden = document.hidden;
       set({ frameloop: hidden ? "never" : "always" });
       if (!hidden) invalidate();
     };
+    onVis();
     document.addEventListener("visibilitychange", onVis);
     return () => document.removeEventListener("visibilitychange", onVis);
   }, [invalidate, set]);
