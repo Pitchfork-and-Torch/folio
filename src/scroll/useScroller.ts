@@ -61,16 +61,20 @@ export function useScroller() {
     };
     raf = requestAnimationFrame(loop);
 
-    const applyHash = () => {
+    // Last-desk restore is boot-only. An empty hash on hashchange means the
+    // user cleared the fragment; do not resurrect the persisted desk.
+    const applyHash = (allowLastDesk: boolean) => {
       if (location.hash) {
         scrollToHash(location.hash);
         return;
       }
+      if (!allowLastDesk) return;
       const last = readLastDeskHash();
       if (last) scrollToHash(last);
     };
-    window.addEventListener("hashchange", applyHash);
-    requestAnimationFrame(applyHash);
+    const onHashChange = () => applyHash(false);
+    window.addEventListener("hashchange", onHashChange);
+    requestAnimationFrame(() => applyHash(true));
 
     // Lenis caches limit from content height. Without resize, hash scrolls and
     // desk sync drift after orientation / viewport changes (mobile URL bar,
@@ -82,7 +86,7 @@ export function useScroller() {
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("hashchange", applyHash);
+      window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("resize", onResize);
       motionMq.removeEventListener("change", syncLerp);
       lenis.destroy();

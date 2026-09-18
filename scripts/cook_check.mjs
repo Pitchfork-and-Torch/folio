@@ -126,6 +126,13 @@ if (!scroller.includes('motionMq.removeEventListener("change", syncLerp)')) {
   fail("useScroller must remove reduced-motion listener on teardown");
 }
 
+if (!scroller.includes("allowLastDesk") || !scroller.includes("onHashChange")) {
+  fail("useScroller must treat last-desk restore as boot-only (not empty hashchange)");
+}
+if (!scroller.includes("applyHash(false)") || !scroller.includes("applyHash(true)")) {
+  fail("useScroller must call applyHash(false) on hashchange and applyHash(true) on boot");
+}
+
 const stations = read("src/scene/Stations.tsx");
 if (!stations.includes("GAUNTLET_FAMILIES.length")) {
   fail("GauntletBay seals must follow GAUNTLET_FAMILIES.length");
