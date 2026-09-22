@@ -57,3 +57,5 @@ No. They are invented set dressing. Public notes do not host Liber Primus JPEGs 
 
 ### How do I read this without WebGL?
 https://folio.jonbailey.xyz/a11y and the no-JS HTML on the homepage.
+
+Last reviewed: 2026-09-22
