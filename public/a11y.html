@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#07080c" />
+    <title>Accessibility - Folio</title>
+    <meta name="description" content="Accessibility statement for Folio. Canvas limits, keyboard, and a plain-text dossier." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Folio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://folio.jonbailey.xyz/a11y" />
+    <meta property="og:title" content="Accessibility - Folio" />
+    <meta property="og:description" content="Accessibility statement for Folio. Canvas limits, keyboard, and a plain-text dossier." />
+    <meta property="og:image" content="https://folio.jonbailey.xyz/og.jpg?v=1.5.0" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Night stone scriptorium with oak lecterns, a cipher gauntlet bay, and hanging invented glyph sheets." />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=1.5.0" sizes="180x180" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@suddenlyjon" />
+    <meta name="twitter:creator" content="@suddenlyjon" />
+    <meta name="twitter:title" content="Accessibility - Folio" />
+    <meta name="twitter:description" content="Accessibility statement for Folio. Canvas limits, keyboard, and a plain-text dossier." />
+    <meta name="twitter:image" content="https://folio.jonbailey.xyz/og.jpg?v=1.5.0" />
+    <meta name="twitter:image:alt" content="Night stone scriptorium with oak lecterns, a cipher gauntlet bay, and hanging invented glyph sheets." />
+    <link rel="canonical" href="https://folio.jonbailey.xyz/a11y" />
+    <link rel="stylesheet" href="/fonts/fontshare/fonts.css" />
+    <style>
+      :root { color-scheme: dark; --bone:#e8dcc8; --night:#07080c; --mute:#b7a27a; }
+      body { margin:0; background:var(--night); color:var(--bone); font:16px/1.55 Satoshi, system-ui, sans-serif; }
+      main { max-width:40rem; margin:0 auto; padding:3rem 1.25rem 5rem; }
+      h1,h2 { font-family:"Clash Display", Satoshi, Georgia, serif; font-weight:600; }
+      a { color:#e8dcc8; }
+      p,li { color:#d7cbb6; }
+      .skip {
+        position: absolute;
+        left: 1rem;
+        top: 0.75rem;
+        transform: translateY(-160%);
+        background: #e8dcc8;
+        color: #1a140e;
+        padding: 0.55rem 0.8rem;
+        text-decoration: none;
+      }
+      .skip:focus { transform: none; }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <main id="main" tabindex="-1">
+      <p><a href="/">Back to Folio</a></p>
+      <h1>Accessibility</h1>
+      <p>
+        Folio is a full-canvas 3D hall. The camera is driven by page scroll.
+        That form is harder for some readers than a normal document.
+      </p>
+      <h2>What we ship</h2>
+      <ul>
+        <li>Pinch zoom is allowed. There is no user-scalable=no lock.</li>
+        <li>A skip link and a main landmark live on the homepage and on this page.</li>
+        <li>Keyboard users can tab the brand island, desk links, and GitHub exits.</li>
+        <li>prefers-reduced-motion replaces the walking camera with a still poster and the same copy.</li>
+        <li>With JavaScript off, the homepage still prints the desks.</li>
+        <li>Caption and dossier text stay selectable. Focus-visible rings use candle gold.</li>
+      </ul>
+      <h2>What the canvas cannot do well</h2>
+      <p>
+        Screen readers do not inspect the 3D canvas. Treat the hall as illustration.
+        The research itself lives in public GitHub notes.
+      </p>
+      <h2>Plain dossier</h2>
+      <p>Hypothesis notes only. Not a solve. Not a translation. Not a recruiter.</p>
+      <p><a href="https://github.com/Pitchfork-and-Torch/liber-research">Liber Primus notes</a></p>
+      <p><a href="https://github.com/Pitchfork-and-Torch/voynich-research">Voynich notes</a></p>
+      <p>Desk 03, the school: <a href="https://instar.jonbailey.xyz/">INSTAR</a></p>
+      <p>Desk 04, cipher gauntlet. Eight named families burned 2026-08-14. All FAIL. Not a new method.</p>
+      <ul>
+        <li>outguess</li>
+        <li>book-index</li>
+        <li>running-key</li>
+        <li>periodic</li>
+        <li>columnar</li>
+        <li>word-unit</li>
+        <li>acrostic</li>
+        <li>homophonic</li>
+      </ul>
+      <p>Receipts: <a href="https://github.com/Pitchfork-and-Torch/liber-research">liber-research</a>. Do not recook. No ninth family.</p>
+      <p>Catalog wall: more notes when they are public. This site does not host page images or rune dumps.</p>
+      <p>Issues: <a href="https://github.com/Pitchfork-and-Torch/folio/issues">Folio on GitHub</a></p>
+    </main>
+    <script defer src="https://hits.jonbailey.xyz/c.js" data-site="folio"></script>
+  </body>
+</html>
