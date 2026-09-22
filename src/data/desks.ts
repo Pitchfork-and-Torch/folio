@@ -79,9 +79,9 @@ export const DESKS: Desk[] = [
     status: "Not a translation",
     lede: "Beinecke MS 408. Hypothesis gloss only. Not a translation.",
     facts: [
-      "Passes 1-7: folio walks on f1r, f9v, f10v, f99r, f99v, f65r, f41v.",
-      "Pass 8: leftover herbal token keerodal is still unique. Not a plant name.",
-      "Herbal-A label pass: FAIL. Next folio waits on a named gate.",
+      "Passes 1-8 and herbal-A: FAIL on labels in f1r-f8v. keerodal still unique. Not a plant name.",
+      "Gauntlets 2-4: label register (qo- down, ok/ot up) survives line-position, label-only-page, and section-matched nulls. Hypothesis only.",
+      "Gauntlet 5: clean qo- ban is herbal/pharma labels (Lf/Lc/Lp). Soft any-label wording narrowed. Not a translation.",
     ],
     href: "https://github.com/Pitchfork-and-Torch/voynich-research",
     hrefLabel: "Open voynich-research",
