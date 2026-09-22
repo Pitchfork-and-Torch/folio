@@ -80,8 +80,8 @@ export const DESKS: Desk[] = [
     lede: "Beinecke MS 408. Hypothesis gloss only. Not a translation.",
     facts: [
       "Passes 1-8 and herbal-A: FAIL on labels in f1r-f8v. keerodal still unique. Not a plant name.",
-      "Gauntlets 2-4: label register (qo- down, ok/ot up) survives line-position, label-only-page, and section-matched nulls. Hypothesis only.",
-      "Gauntlet 5: clean qo- ban is herbal/pharma labels (Lf/Lc/Lp). Soft any-label wording narrowed. Not a translation.",
+      "Gauntlets 2-5: label register survives line-position, label-only-page, section-matched nulls; clean qo- ban is NAME (Lf/Lc/Lp). Hypothesis only.",
+      "Gauntlets 6-8: section T tiny-n HIT-shape confirmed secondary; OTHER/L0 weakness is sole/short + IT/ZL fRos tagging - not merged into NAME. Not a translation.",
     ],
     href: "https://github.com/Pitchfork-and-Torch/voynich-research",
     hrefLabel: "Open voynich-research",
