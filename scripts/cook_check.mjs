@@ -157,6 +157,22 @@ for (const fam of FAMILIES) {
   if (!a11y.includes(fam)) fail("a11y.html missing family " + fam);
 }
 if (!a11y.includes("No ninth family")) fail("a11y.html missing no-ninth honesty");
+if (!a11y.includes('name="twitter:site" content="@suddenlyjon"')) {
+  fail("a11y.html missing twitter:site @suddenlyjon");
+}
+if (!a11y.includes('name="twitter:creator" content="@suddenlyjon"')) {
+  fail("a11y.html missing twitter:creator @suddenlyjon");
+}
+if (!a11y.includes('property="og:image" content="https://folio.jonbailey.xyz/og.jpg?v=')) {
+  fail("a11y.html missing og:image card");
+}
+if (!a11y.includes('name="twitter:image:alt"')) fail("a11y.html missing twitter:image:alt");
+if (!a11y.includes('href="https://folio.jonbailey.xyz/a11y"')) {
+  fail("a11y.html canonical must be /a11y (pretty URL)");
+}
+if (a11y.includes('href="https://folio.jonbailey.xyz/a11y.html"')) {
+  fail("a11y.html canonical still points at .html");
+}
 
 const index = read("index.html");
 if (!index.includes('href="#liber-plain"')) fail("index.html missing no-JS skip to desks");
