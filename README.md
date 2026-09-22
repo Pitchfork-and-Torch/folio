@@ -17,6 +17,8 @@ This site is a full-canvas 3D hall. Scroll walks the aisle. The notes themselves
 
 No new Liber Primus plaintext. No Voynich language, plant, or crib. Hall pages are invented set dressing.
 
+Plain dossier (no canvas): https://folio.jonbailey.xyz/a11y
+
 ## Stack
 
 Vite, React, Three.js (WebGL), React Three Fiber, Lenis, Motion, Zustand.
